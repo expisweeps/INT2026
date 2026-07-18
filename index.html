@@ -1508,40 +1508,28 @@
             <div class="player-avatar">KM</div>
             <div class="player-info">
               <div class="player-name">Kevin McGlynn</div>
-              <div class="player-handicap" id="hcp-1462945"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/1462945" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">15.7</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
           <li class="player-item">
             <div class="player-avatar">RP</div>
             <div class="player-info">
               <div class="player-name">Ryan Perussi</div>
-              <div class="player-handicap" id="hcp-11992136"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/11992136" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">16.6</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
           <li class="player-item">
             <div class="player-avatar">KM</div>
             <div class="player-info">
               <div class="player-name">Kiley Maertz</div>
-              <div class="player-handicap" id="hcp-1713468"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/1713468" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">17.7</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
           <li class="player-item">
             <div class="player-avatar">AO</div>
             <div class="player-info">
               <div class="player-name">Andy Oram</div>
-              <div class="player-handicap" id="hcp-11502825"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/11502825" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">10.8</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
         </ul>
@@ -1557,40 +1545,28 @@
             <div class="player-avatar">AG</div>
             <div class="player-info">
               <div class="player-name">Amit Ghadiyali</div>
-              <div class="player-handicap" id="hcp-11773510"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/11773510" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">14.9</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
           <li class="player-item">
             <div class="player-avatar">MJ</div>
             <div class="player-info">
               <div class="player-name">Matt Johnson</div>
-              <div class="player-handicap" id="hcp-10923739"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/10923739" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">7.5</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
           <li class="player-item">
             <div class="player-avatar">EM</div>
             <div class="player-info">
               <div class="player-name">Erick Martinez</div>
-              <div class="player-handicap" id="hcp-10807601"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/10807601" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">6.6</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
           <li class="player-item">
             <div class="player-avatar">TT</div>
             <div class="player-info">
               <div class="player-name">Tommy Thigpen</div>
-              <div class="player-handicap" id="hcp-10841917"></div>
-            </div>
-            <div class="player-ghin">
-              <a href="https://www.ghin.com/golfers/10841917" target="_blank" class="ghin-btn">GHIN ↗</a>
+              <div class="player-handicap"><span class="hcp-value">16.5</span><span class="hcp-label">H.I.</span></div>
             </div>
           </li>
         </ul>
@@ -1712,7 +1688,7 @@
           <span class="day-label">Round 2 — Ryder Cup</span>
         </div>
         <div class="day-card">
-          <div class="day-venue">Colorado National Golf Club</div>
+          <div class="day-venue">Colorado National Golf Club · Erie, Colorado</div>
           <div class="day-details">
             <div class="day-detail-row">
               <span class="detail-icon">🕘</span>
@@ -1752,7 +1728,7 @@
           <span class="day-label">Round 3 — Championship + Closing Dinner</span>
         </div>
         <div class="day-card" style="margin-bottom: 16px;">
-          <div class="day-venue">Bear Dance Golf Club</div>
+          <div class="day-venue">Bear Dance Golf Club · Larkspur, Colorado</div>
           <div class="day-details">
             <div class="day-detail-row">
               <span class="detail-icon">🕘</span>
@@ -2152,7 +2128,6 @@ function checkPassword() {
       });
       startCountdown();
       initScrollAnimations();
-      loadHandicaps();
     }, 800);
     err.classList.remove('show');
   } else {
@@ -2170,34 +2145,6 @@ function checkPassword() {
 document.getElementById('gate-pw').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPassword();
 });
-
-// ============ HANDICAP INDEX — MANUAL UPDATE ============
-// To update: change the handicap value next to each player's GHIN number.
-// Format is decimal (e.g. 8.4). Use null if unknown.
-// Last updated: [update this date when you change values]
-
-const handicaps = {
-  '1462945':  null,   // Kevin McGlynn
-  '11992136': null,   // Ryan Perussi
-  '1713468':  null,   // Kiley Maertz
-  '11502825': null,   // Andy Oram
-  '11773510': null,   // Amit Ghadiyali
-  '10807601': null,   // Erick Martinez
-  '10841917': null,   // Tommy Thigpen
-};
-
-function loadHandicaps() {
-  Object.entries(handicaps).forEach(([ghin, hcp]) => {
-    const el = document.getElementById('hcp-' + ghin);
-    if (!el) return;
-    if (hcp !== null && hcp !== undefined) {
-      const formatted = parseFloat(hcp).toFixed(1);
-      el.innerHTML = `<span class="hcp-value">${formatted}</span><span class="hcp-label">HCP Index</span>`;
-    } else {
-      el.innerHTML = `<a href="https://www.ghin.com/golfers/${ghin}" target="_blank" class="hcp-link">View on GHIN ↗</a>`;
-    }
-  });
-}
 
 
 function startCountdown() {
