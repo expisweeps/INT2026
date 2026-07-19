@@ -1384,6 +1384,7 @@
     <div class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">INT 2026</div>
     <ul class="nav-links">
       <li><a onclick="scrollToSection('teams')">Teams</a></li>
+      <li><a onclick="scrollToSection('leaderboard')">Leaderboard</a></li>
       <li><a onclick="scrollToSection('schedule')">Schedule</a></li>
       <li><a onclick="scrollToSection('formats')">Formats</a></li>
       <li><a onclick="scrollToSection('logistics')">Logistics</a></li>
@@ -1397,6 +1398,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <a onclick="scrollToSection('teams');toggleMenu()">Teams</a>
+    <a onclick="scrollToSection('leaderboard');toggleMenu()">Leaderboard</a>
     <a onclick="scrollToSection('schedule');toggleMenu()">Schedule</a>
     <a onclick="scrollToSection('formats');toggleMenu()">Formats</a>
     <a onclick="scrollToSection('logistics');toggleMenu()">Logistics</a>
@@ -1571,6 +1573,100 @@
           </li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============= LIVE LEADERBOARD ============= -->
+  <section id="leaderboard" style="background: linear-gradient(180deg, rgba(201,168,76,0.04) 0%, rgba(0,0,0,0.2) 100%); border-top: 1px solid rgba(201,168,76,0.15); border-bottom: 1px solid rgba(201,168,76,0.15);">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Cup Standings · Updated Live</span>
+      <h2 class="section-title">🏆 Live Leaderboard</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="fade-in" style="max-width: 900px; margin: 0 auto;">
+
+      <!-- Quick Points Summary -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-bottom: 40px;">
+        <div style="text-align: center; padding: 20px; background: rgba(107,174,214,0.08); border: 1px solid rgba(107,174,214,0.3); border-radius: 8px;">
+          <div style="font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sd-sky); margin-bottom: 6px;">Team SD</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); line-height: 1;">0</div>
+          <div style="font-size: 10px; color: rgba(245,240,232,0.5); margin-top: 4px; letter-spacing: 0.15em;">Points</div>
+        </div>
+        <div style="text-align: center; padding: 20px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px;">
+          <div style="font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--masters-gold); margin-bottom: 6px;">Team LA</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); line-height: 1;">0</div>
+          <div style="font-size: 10px; color: rgba(245,240,232,0.5); margin-top: 4px; letter-spacing: 0.15em;">Points</div>
+        </div>
+        <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-bottom: 6px;">To Win Cup</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--masters-gold); line-height: 1;">4.5</div>
+          <div style="font-size: 10px; color: rgba(245,240,232,0.5); margin-top: 4px; letter-spacing: 0.15em;">Points</div>
+        </div>
+        <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px;">
+          <div style="font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-bottom: 6px;">Available</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); line-height: 1;">8</div>
+          <div style="font-size: 10px; color: rgba(245,240,232,0.5); margin-top: 4px; letter-spacing: 0.15em;">Total</div>
+        </div>
+      </div>
+
+      <!-- Google Sheets Embed Container -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 24px;">
+        <div style="font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--masters-gold); text-align: center; margin-bottom: 16px;">📊 Live Match Scoring</div>
+
+        <!-- ============= LEADERBOARD IFRAME =============
+             ⚠️ REPLACE the src URL below with your published Google Sheets URL.
+             Steps to get the URL:
+             1. Open your Google Sheet with the imported scoring workbook
+             2. Click File → Share → Publish to web
+             3. Under "Link", select "Cup Leaderboard" tab (not entire document)
+             4. Publish as "Web page"
+             5. Copy the URL and paste it in place of the src below
+             6. Add "&widget=true&headers=false&chrome=false" to the end for a clean embed
+        ============================================== -->
+        <div id="leaderboard-embed" style="position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 6px; background: rgba(0,0,0,0.3);">
+          <iframe
+            src="about:blank"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; background: white;"
+            title="INT 2026 Cup Leaderboard"
+            id="leaderboard-iframe">
+          </iframe>
+          <!-- Fallback / placeholder shown when iframe URL is not set -->
+          <div id="leaderboard-placeholder" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 40px 24px; text-align: center; color: rgba(245,240,232,0.7);">
+            <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;">⛳</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 22px; color: var(--masters-gold); margin-bottom: 8px;">Standby for Live Scoring</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(245,240,232,0.5); max-width: 400px; line-height: 1.5;">The live leaderboard activates once the first match tees off at Fossil Trace on July 23. Refresh often for real-time updates.</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+          <button onclick="refreshLeaderboard()" style="background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4); color: var(--masters-gold); padding: 10px 20px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">🔄 Refresh</button>
+          <a id="fullscreen-link" href="#" target="_blank" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: rgba(245,240,232,0.7); padding: 10px 20px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">↗ Open Full Sheet</a>
+        </div>
+      </div>
+
+      <!-- How the Cup Works Legend -->
+      <div style="background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 24px 28px;">
+        <div style="font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--masters-gold); text-align: center; margin-bottom: 16px;">— How the Cup is Won —</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+          <div style="text-align: center;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--white);">Day 1</div>
+            <div style="font-size: 11px; color: rgba(245,240,232,0.6); margin-top: 4px;">2 pts · 2v2 Four-Ball</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--white);">Day 2</div>
+            <div style="font-size: 11px; color: rgba(245,240,232,0.6); margin-top: 4px;">2 pts · 2v2 Four-Ball</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--white);">Day 3</div>
+            <div style="font-size: 11px; color: rgba(245,240,232,0.6); margin-top: 4px;">4 pts · Singles</div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(201,168,76,0.15); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: rgba(245,240,232,0.7);">First team to <strong style="color: var(--masters-gold);">4.5 points</strong> wins the Cup. Tied 4–4? → Sudden death putting contest at Flying Horse.</div>
+      </div>
+
     </div>
   </section>
 
@@ -2045,57 +2141,71 @@
     <div class="scoring-board fade-in">
       <div class="scoring-header">
         <span class="section-eyebrow" style="text-align:left; display:block; margin-bottom:8px;">Scoring Format</span>
-        <h3 class="scoring-title">The Cup &middot; Nassau Scoring</h3>
+        <h3 class="scoring-title">The Cup &middot; Ryder Cup Points</h3>
       </div>
       <div class="scoring-rows">
         <div class="scoring-row">
           <div class="scoring-row-icon">&#x1F3C6;</div>
           <div class="scoring-row-content">
             <div class="scoring-row-title">Match Format</div>
-            <div class="scoring-row-desc">Three rounds of match play. Days 1 &amp; 2 are <strong>Four-Ball (2v2)</strong> &mdash; Team SD vs Team LA. Day 3 is <strong>Singles (1v1)</strong> across all eight players.</div>
+            <div class="scoring-row-desc">Three rounds of <strong>net match play</strong>. Days 1 &amp; 2 are <strong>2v2 Four-Ball Best Ball</strong> &mdash; Team SD vs Team LA. Day 3 is <strong>Singles (1v1)</strong> across all eight players. Same tees throughout.</div>
+          </div>
+        </div>
+        <div class="scoring-row">
+          <div class="scoring-row-icon">&#x1F4CF;</div>
+          <div class="scoring-row-content">
+            <div class="scoring-row-title">Handicap Allocation</div>
+            <div class="scoring-row-desc"><strong>Full course handicaps</strong> applied. In each match, the <strong>low handicap plays scratch</strong> and everyone else receives strokes off the low man. Strokes distributed to the hardest holes per the course scorecard.</div>
           </div>
         </div>
         <div class="scoring-row">
           <div class="scoring-row-icon">&#x1F4B0;</div>
           <div class="scoring-row-content">
-            <div class="scoring-row-title">Nassau Scoring &mdash; 3 Points Per Match</div>
-            <div class="scoring-row-desc">Each match is worth <strong>3 points</strong> under Nassau rules: 1 point for the front 9, 1 point for the back 9, 1 point for the overall 18. Every nine matters.</div>
+            <div class="scoring-row-title">Points Per Match</div>
+            <div class="scoring-row-desc">Each match is worth <strong>1 point</strong>. Win the match, 1 point to your team. <strong>Halved match = 0.5 point each</strong>. Days 1 &amp; 2 have 2 points available each; Day 3 has 4 points available.</div>
           </div>
         </div>
         <div class="scoring-row">
           <div class="scoring-row-icon">&#x1F4CA;</div>
           <div class="scoring-row-content">
             <div class="scoring-row-title">Total Points Available</div>
-            <div class="scoring-row-desc"><strong>24 points</strong> available across the full week. The team that reaches <strong>12.5 points wins the Cup</strong>. The reigning champion needs only <strong>12 points to retain</strong>.</div>
+            <div class="scoring-row-desc"><strong>8 points</strong> available across the week. First team to <strong>4.5 points wins the Cup</strong>.</div>
+          </div>
+        </div>
+        <div class="scoring-row">
+          <div class="scoring-row-icon">&#x26A1;</div>
+          <div class="scoring-row-content">
+            <div class="scoring-row-title">Tiebreaker &mdash; Sudden Death</div>
+            <div class="scoring-row-desc">If the Cup is <strong>tied 4&ndash;4</strong> at the end of Day 3, sudden death: each captain picks one player. <strong>Putting contest at Flying Horse Country Club</strong> practice green. First putt drained wins the Cup for their city.</div>
           </div>
         </div>
         <div class="scoring-row">
           <div class="scoring-row-icon">&#x1F7E2;</div>
           <div class="scoring-row-content">
-            <div class="scoring-row-title">Green Jacket &mdash; Net Stroke Play</div>
-            <div class="scoring-row-desc">Separate from the Cup, <strong>total net stroke score</strong> is tracked across all three rounds. The lowest net score wins the Green Jacket. An individual honor &mdash; independent of the team competition.</div>
+            <div class="scoring-row-title">Green Jacket &mdash; Individual Honor</div>
+            <div class="scoring-row-desc">Separate from the Cup. <strong>Lowest total net score</strong> across all three rounds wins the Green Jacket. Presented at the closing dinner. Independent of the team competition &mdash; a player can win the Green Jacket even if their team loses the Cup.</div>
           </div>
         </div>
       </div>
       <div class="points-summary">
         <div class="points-pill">
-          <span class="points-num">24</span>
+          <span class="points-num">8</span>
           <span class="points-lbl">Total Points</span>
         </div>
         <div class="points-divider">&middot;</div>
         <div class="points-pill">
-          <span class="points-num">12.5</span>
+          <span class="points-num">4.5</span>
           <span class="points-lbl">To Win Cup</span>
         </div>
         <div class="points-divider">&middot;</div>
         <div class="points-pill">
-          <span class="points-num">12</span>
-          <span class="points-lbl">To Retain</span>
+          <span class="points-num">1</span>
+          <span class="points-lbl">Per Match</span>
         </div>
         <div class="points-divider">&middot;</div>
         <div class="points-pill">
-          <span class="points-num">3</span>
-          <span class="points-lbl">Per Match</span>
+          <span class="points-num">0.5</span>
+          <span class="points-lbl">Halved</span>
         </div>
       </div>
     </div>
@@ -2201,6 +2311,32 @@ function scrollToSection(id) {
 function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('open');
 }
+
+// ============ LEADERBOARD ============
+function refreshLeaderboard() {
+  const iframe = document.getElementById('leaderboard-iframe');
+  if (iframe && iframe.src && iframe.src !== 'about:blank') {
+    // Cache-bust the reload
+    const url = new URL(iframe.src);
+    url.searchParams.set('_t', Date.now());
+    iframe.src = url.toString();
+  } else {
+    // Just visual feedback if not configured yet
+    const btn = event.currentTarget;
+    const original = btn.textContent;
+    btn.textContent = '⏳ Sheet not configured yet';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+  }
+}
+
+// Hide placeholder once iframe has a real URL
+window.addEventListener('load', () => {
+  const iframe = document.getElementById('leaderboard-iframe');
+  const placeholder = document.getElementById('leaderboard-placeholder');
+  if (iframe && placeholder && iframe.src && iframe.src !== 'about:blank' && !iframe.src.endsWith('about:blank')) {
+    placeholder.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
